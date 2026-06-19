@@ -1,0 +1,28 @@
+From 3e7a1bac3f85d8fff95d62fec7187ea3f148b300 Mon Sep 17 00:00:00 2001
+From: Reza Arbab <arbab@linux.ibm.com>
+Date: Tue, 7 Apr 2026 05:04:37 +0000
+Subject: [PATCH] shutdown: Call kexec with -f option
+
+This is necessary with kexec-lite.
+
+Upstream-Status: Inappropriate [oe-specific]
+---
+ src/shutdown/shutdown.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/shutdown/shutdown.c b/src/shutdown/shutdown.c
+index ff68f9e272..b8ec65e478 100644
+--- a/src/shutdown/shutdown.c
++++ b/src/shutdown/shutdown.c
+@@ -615,7 +615,7 @@ int main(int argc, char *argv[]) {
+                         if (r == 0) {
+                                 /* Child */
+ 
+-                                (void) execl(KEXEC, KEXEC, "-e", NULL);
++                                (void) execl(KEXEC, KEXEC, "-f", "-e", NULL);
+                                 log_debug_errno(errno, "Failed to execute '" KEXEC "' binary, proceeding with reboot(RB_KEXEC): %m");
+ 
+                                 /* execv failed (kexec binary missing?), so try simply reboot(RB_KEXEC) */
+-- 
+2.52.0
+

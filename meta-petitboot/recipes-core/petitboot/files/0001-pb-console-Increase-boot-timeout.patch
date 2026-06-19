@@ -1,0 +1,40 @@
+From 671f8b12955999c781d08a4376c36457fe6aa892 Mon Sep 17 00:00:00 2001
+From: Reza Arbab <arbab@linux.ibm.com>
+Date: Fri, 3 Apr 2026 17:17:59 -0500
+Subject: [PATCH] pb-console: Increase boot timeout
+
+The /etc/rc6.d/S20sendsigs script in Yocto poky waits 5 seconds between
+sending TERM and KILL signals:
+
+  echo "Sending all processes the TERM signal..."
+  killall5 -15
+  sleep 5
+  echo "Sending all processes the KILL signal..."
+  killall5 -9
+
+Bump the boot timeout in pb-console correspondingly. Without this, we
+briefly get a shell prompt after the "SIGTERM received, booting..."
+message, before the new kernel starts.
+
+Signed-off-by: Reza Arbab <arbab@linux.ibm.com>
+Upstream-Status: Inappropriate [oe-specific]
+---
+ utils/pb-console | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/utils/pb-console b/utils/pb-console
+index f06ceac..c85812e 100644
+--- a/utils/pb-console
++++ b/utils/pb-console
+@@ -136,7 +136,7 @@ then
+ fi
+ 
+ trap '' SIGINT
+-trap 'reset; echo "SIGTERM received, booting..."; sleep 2' SIGTERM
++trap 'reset; echo "SIGTERM received, booting..."; sleep 10' SIGTERM
+ 
+ while :
+ do
+-- 
+2.43.7
+

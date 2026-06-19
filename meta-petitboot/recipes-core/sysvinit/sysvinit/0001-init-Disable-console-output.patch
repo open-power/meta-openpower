@@ -1,0 +1,29 @@
+From 8096d2fce6b48a9b7642fc036464f8bb3dd445bc Mon Sep 17 00:00:00 2001
+From: Reza Arbab <arbab@linux.ibm.com>
+Date: Thu, 2 Apr 2026 20:06:44 +0000
+Subject: [PATCH] init: Disable console output
+
+Console output writes over the petitboot ncurses ui. Silence it.
+
+Signed-off-by: Reza Arbab <arbab@linux.ibm.com>
+Upstream-Status: Inappropriate [oe-specific]
+---
+ src/init.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/init.h b/src/init.h
+index 1b70d6d..d3e57c7 100644
+--- a/src/init.h
++++ b/src/init.h
+@@ -112,7 +112,7 @@ typedef struct _child_ {
+ #define XECUTED		128	/* Set if spawned once or more times */
+ 
+ /* Log levels. */
+-#define L_CO	1		/* Log on the console. */
++#define L_CO	0		/* Log on the console. */
+ #define L_SY	2		/* Log with syslog() */
+ #define L_VB	(L_CO|L_SY)	/* Log with both. */
+ 
+-- 
+2.43.7
+

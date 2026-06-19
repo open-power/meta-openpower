@@ -1,0 +1,1 @@
+RPROVIDES:kexec += "virtual-kexec"

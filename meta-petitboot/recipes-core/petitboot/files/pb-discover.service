@@ -1,0 +1,11 @@
+[Unit]
+Description=Petitboot dynamic device discovery daemon
+After=udev.service
+
+[Service]
+ExecStart=@SBINDIR@/pb-discover
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

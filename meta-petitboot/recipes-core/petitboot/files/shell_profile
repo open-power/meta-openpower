@@ -1,0 +1,4 @@
+if [ "$PPID" = "1" ]; then
+	export PATH=/usr/sbin:/sbin:$PATH
+	exec /usr/libexec/petitboot/pb-console
+fi
