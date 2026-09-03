@@ -6,7 +6,6 @@ require recipes-kernel/linux/linux-yocto.inc
 SRC_URI = "\
     https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-${LINUX_VERSION}.tar.xz \
     file://0001-xhci-Reset-controller-on-xhci-shutdown.patch \
-    file://defconfig \
 "
 
 SRC_URI[sha256sum] = "a83cd200e6646db52866b8309e9137b9e9048b613cbda10ced2b811aae125255"
@@ -21,6 +20,7 @@ S = "${UNPACKDIR}/linux-${PV}"
 
 COMPATIBLE_MACHINE = "^powernv$"
 
+KBUILD_DEFCONFIG = "skiroot_defconfig"
 KCONFIG_MODE = "alldefconfig"
 
 # ELF binary has relocations in .text
