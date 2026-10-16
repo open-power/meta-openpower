@@ -34,6 +34,11 @@ rootfs_postprocess() {
     # Avoid "Warning: unable to open an initial console" at boot
     install -d ${IMAGE_ROOTFS}/dev
     mknod -m 600 ${IMAGE_ROOTFS}/dev/console c 5 1
+
+    # We already run pb-console on serial consoles, don't run getty
+    if [ -f ${IMAGE_ROOTFS}${sysconfdir}/inittab ]; then
+        sed -i "/start_getty/d" ${IMAGE_ROOTFS}${sysconfdir}/inittab
+    fi
 }
 
 ROOTFS_POSTPROCESS_COMMAND += "rootfs_postprocess; "
