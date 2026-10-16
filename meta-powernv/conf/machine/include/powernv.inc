@@ -13,4 +13,7 @@ PREFERRED_PROVIDER_virtual/kernel ?= "linux-openpower"
 KERNEL_IMAGETYPE = "zImage.epapr"
 INITRAMFS_FSTYPES = "cpio.xz"
 
+IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
+IMAGE_NAME_SUFFIX = ""
+
 PREFERRED_RPROVIDER_virtual-kexec = "kexec-lite"

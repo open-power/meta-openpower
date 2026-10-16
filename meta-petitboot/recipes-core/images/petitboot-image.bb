@@ -19,10 +19,6 @@ PETITBOOT_IMAGE_EXTRA_INSTALL = "\
 
 PACKAGE_EXCLUDE = "kernel-image-*"
 
-IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
-IMAGE_NAME_SUFFIX = ""
-
-IMAGE_FEATURES = "empty-root-password"
 IMAGE_LINGUAS = "en-us de-de es-es fr-fr it-it ja-jp ko-kr pt-br ru-ru zh-cn zh-tw"
 
 rootfs_postprocess() {
