@@ -35,6 +35,11 @@ rootfs_postprocess() {
     if [ -f ${IMAGE_ROOTFS}${sysconfdir}/inittab ]; then
         sed -i "/start_getty/d" ${IMAGE_ROOTFS}${sysconfdir}/inittab
     fi
+
+    # pb-discover will start udhcpc
+    if [ -e "${IMAGE_ROOTFS}${sysconfdir}/network/interfaces" ]; then
+        sed -i 's/inet dhcp/inet manual/g' ${IMAGE_ROOTFS}${sysconfdir}/network/interfaces
+    fi
 }
 
 ROOTFS_POSTPROCESS_COMMAND += "rootfs_postprocess; "
