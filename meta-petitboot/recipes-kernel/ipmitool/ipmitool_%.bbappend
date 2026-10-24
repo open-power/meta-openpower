@@ -1,1 +1,1 @@
-EXTRA_OECONF += "--enable-intf-usb"
+EXTRA_OECONF:append:petitroot = " --enable-intf-usb"

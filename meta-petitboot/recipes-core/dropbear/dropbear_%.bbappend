@@ -2,6 +2,9 @@
 
 PACKAGECONFIG[server] = ","
 
+PACKAGECONFIG:append = " server"
+PACKAGECONFIG:remove:petitroot = "server"
+
 SBINCOMMANDS:remove = "${@bb.utils.contains('PACKAGECONFIG', 'server', '', 'dropbear', d)}"
 
 do_install:append() {

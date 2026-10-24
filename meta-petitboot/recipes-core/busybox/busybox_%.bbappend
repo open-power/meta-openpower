@@ -1,3 +1,3 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI += "file://petitboot.cfg"
+SRC_URI:append:petitroot = " file://petitboot.cfg"

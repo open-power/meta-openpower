@@ -1,3 +1,3 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
-SRC_URI += " file://0001-shutdown-Call-kexec-with-f-option.patch"
+SRC_URI:append:powernv = " file://0001-shutdown-Call-kexec-with-f-option.patch"

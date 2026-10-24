@@ -1,9 +1,9 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 # Silence /init itself
-SRC_URI += "file://0001-init-Disable-console-output.patch"
+SRC_URI:append:petitroot = " file://0001-init-Disable-console-output.patch"
 
-do_install:append() {
+do_install:append:petitroot() {
     # Silence everything launched via /etc/init.d/rc 
     printf "\nexec >/dev/null 2>&1\n" >> ${D}${sysconfdir}/default/rcS
 
